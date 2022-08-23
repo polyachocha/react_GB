@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.84de9628.css","mappings":"AAAA,kBACC,wBAA2B,CAE3B,UAAY,CADZ,cAAe,CAEf,iBACD","sources":["message-component/Message.module.css"],"sourcesContent":[".p {\n background-color: lightblue;\n font-size: 60px;\n color: white;\n text-align: center;\n}"],"names":[],"sourceRoot":""}
