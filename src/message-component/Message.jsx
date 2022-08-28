@@ -1,9 +1,7 @@
-import MessageCss from './Message.module.css'
+import style from './Message.module.css'
 
 export const Message = ({ text }) => {
-
     return <>
-        <p className={MessageCss.p}>{text}</p>
-
+        <p className={style.p}>{text}</p>
     </>
 } 
