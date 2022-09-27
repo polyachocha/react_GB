@@ -1,4 +1,4 @@
-import { List, ListItem } from '@mui/material';
+import { ListItem } from '@mui/material';
 import React, { FC, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { Chat } from 'src/types';
