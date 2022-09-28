@@ -1,9 +1,14 @@
 export interface Message {
-  author: string;
+  author: AUTHOR;
   value: string;
 }
 
-export type Messages = Message[];
+export type Messages = Record<string, Message[]>;
+
+export enum AUTHOR {
+  USER = 'USER',
+  BOT = 'BOT',
+}
 
 export interface Chat {
   id: string;
