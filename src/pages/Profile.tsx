@@ -27,3 +27,4 @@ export const Profile: FC = () => {
     </>
   );
 };
+// export default Profile;
