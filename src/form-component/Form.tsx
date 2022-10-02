@@ -1,45 +1,58 @@
 import React, { FC, useState } from 'react';
 import styles from './Form.module.css';
+import MUIButton from '@mui/material/Button';
 import { TextField } from '@mui/material';
-import { Button } from './components/Button';
-import { AUTHOR, Message } from 'src/types';
-import { useParams } from 'react-router-dom';
+import { Message } from 'src/types';
 
 interface FormProps {
-  addMessage: (chatId: string, msg: Message) => void;
+  addMessage: (msg: Message) => void;
 }
 
 export const Form: FC<FormProps> = ({ addMessage }) => {
   const [value, setValue] = useState('');
-  const { chatId } = useParams();
+  const [author, setAuthor] = useState('');
 
   const sendMessage = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
-    if (chatId) {
-      addMessage(chatId, {
-        author: AUTHOR.USER,
-        value,
-      });
-    }
+    addMessage({
+      author,
+      value,
+    });
     setValue('');
+    setAuthor('');
   };
   return (
     <form onSubmit={sendMessage} className={styles.form}>
       <TextField
         autoFocus
         id="outlined-basic"
-        label="Введите текст"
+        label="Введите имя"
         variant="outlined"
         className={styles.input}
         type="text"
         value={value}
         onChange={(ev) => setValue(ev.target.value)}
-        inputProps={{ 'data-testid': 'input' }}
       />
       <br />
-      <Button disabled={!value} render={(label: string) => <div>{label}</div>}>
+      <TextField
+        id="outlined-basic"
+        label="Введите текст"
+        variant="outlined"
+        className={styles.input}
+        type="text"
+        value={author}
+        placeholder="Введите имя"
+        onChange={(ev) => setAuthor(ev.target.value)}
+      />
+      <br />
+      <MUIButton
+        className={styles.button}
+        disabled={!value}
+        variant="contained"
+        type="submit"
+      >
         Send
-      </Button>
+      </MUIButton>
     </form>
   );
 };
