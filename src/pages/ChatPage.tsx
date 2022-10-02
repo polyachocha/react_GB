@@ -50,18 +50,3 @@ export const ChatPage: FC<ChatPageProps> = ({
     </>
   );
 };
-/* 
-  const addMessage = (newMessage) => {
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
-  };
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (messages.length > 0) {
-        alert('Сообщение доставлено!');
-      }
-    }, 1500);
-    return () => clearInterval(timeout);
-  }, [messages]);
-
-  <MessageList messages={messages} />
-      <Form addMessage={addMessage} /> */
