@@ -6,16 +6,14 @@ interface MessageListProps {
   messages: Messages;
 }
 
-export const MessageList: FC<MessageListProps> = ({ messages }) => {
-  return (
-    <List>
-      {messages.map((message, idx) => (
-        <ListItem key={idx}>
-          <li key={idx} data-testid="li">
-            {message.author} : {message.value}
-          </li>
-        </ListItem>
-      ))}
-    </List>
-  );
-};
+export const MessageList: FC<MessageListProps> = ({ messages }) => (
+  <List>
+    {messages.map((message, idx) => (
+      <ListItem key={idx}>
+        <li key={idx} data-testid="li">
+          {message.author} : {message.value}
+        </li>
+      </ListItem>
+    ))}
+  </List>
+);
