@@ -27,5 +27,9 @@ export const Profile: FC = () => {
     </>
   );
 };
+<<<<<<< HEAD
 
 // export default Profile;
+=======
+// export default Profile;
+>>>>>>> cec5a8c6ad7728e31e3d5491e8d249f72fe05607

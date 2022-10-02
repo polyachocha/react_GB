@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { FC, Suspense, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ChatList } from './chat-component/ChatList';
@@ -18,50 +19,29 @@ const Profile = React.lazy(() =>
     new Promise((resolve) => setTimeout(resolve, 1000)),
   ]).then(([moduleExport]) => moduleExport)
 );
+=======
+import { Form } from './form-component/Form';
+import { MessageList } from './message-component/MessageList';
+import { useState, useEffect } from 'react';
+import './index.css';
+>>>>>>> cec5a8c6ad7728e31e3d5491e8d249f72fe05607
 
-const defaultChats: Chat[] = [
-  {
-    id: '1',
-    name: 'first',
-  },
-  {
-    id: '2',
-    name: 'second',
-  },
-];
-
-const defaultMessages: Messages = {
-  '1': [{ author: AUTHOR.USER, value: 'hello, world' }],
-  '2': [{ author: AUTHOR.BOT, value: 'hello, im bot' }],
-};
-
-export const App: FC = () => {
-  const [chats, setChats] = useState<Chat[]>(defaultChats);
-  const [messages, setMessages] = useState<Messages>(defaultMessages);
-
-  const onAddChat = (newChat: Chat) => {
-    setChats([...chats, newChat]);
-    setMessages({
-      ...messages,
-      [newChat.id]: [],
-    });
+export const App = () => {
+  const [messages, setMessages] = useState([]);
+  const addMessage = (newMessage) => {
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
   };
-
-  const onAddMessage = (chatId: string, newMessage: Message) => {
-    setMessages({
-      ...messages,
-      [chatId]: [...messages[chatId], newMessage],
-    });
-  };
-
-  const onDelChat = (chatId: string) => {
-    const filterChats = chats.filter((item) => item.id != chatId);
-    setChats([...filterChats]);
-    delete messages[chatId];
-    setMessages({ ...messages });
-  };
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (messages.length > 0) {
+        alert('Сообщение доставлено!');
+      }
+    }, 1500);
+    return () => clearInterval(timeout);
+  }, [messages]);
 
   return (
+<<<<<<< HEAD
     <Provider store={store}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
@@ -98,5 +78,11 @@ export const App: FC = () => {
         </Routes>
       </Suspense>
     </Provider>
+=======
+    <>
+      <MessageList messages={messages} />
+      <Form addMessage={addMessage} />
+    </>
+>>>>>>> cec5a8c6ad7728e31e3d5491e8d249f72fe05607
   );
 };
