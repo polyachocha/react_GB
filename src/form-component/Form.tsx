@@ -2,24 +2,25 @@ import React, { FC, useState } from 'react';
 import styles from './Form.module.css';
 import { TextField } from '@mui/material';
 import { Button } from './components/Button';
-import { AUTHOR, Message } from 'src/types';
+import { AUTHOR } from 'src/types';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addMessage } from 'src/store/messages/actions';
 
-interface FormProps {
-  addMessage: (chatId: string, msg: Message) => void;
-}
-
-export const Form: FC<FormProps> = ({ addMessage }) => {
+export const Form: FC = () => {
   const [value, setValue] = useState('');
   const { chatId } = useParams();
+  const dispatch = useDispatch();
 
   const sendMessage = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     if (chatId) {
-      addMessage(chatId, {
-        author: AUTHOR.USER,
-        value,
-      });
+      dispatch(
+        addMessage(chatId, {
+          author: AUTHOR.USER,
+          value,
+        })
+      );
     }
     setValue('');
   };
