@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> lesson6.2
 import { TOGGLE_PROFILE, CHANGE_NAME } from './actions';
 
 export type ProfileActions = ToggleProfile | ChangeName;
