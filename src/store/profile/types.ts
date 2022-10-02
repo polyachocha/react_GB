@@ -1,3 +1,4 @@
+
 import { TOGGLE_PROFILE, CHANGE_NAME } from './actions';
 
 export type ProfileActions = ToggleProfile | ChangeName;
