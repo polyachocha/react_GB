@@ -5,18 +5,21 @@ import { Button } from './components/Button/Button';
 import { AUTHOR } from 'src/types';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addMessage } from 'src/store/messages/actions';
+import { addMessageWithReplay } from 'src/store/messages/actions';
+import { ThunkDispatch } from 'redux-thunk';
+import { StoreState } from '../../store'
+import { AddMessage } from 'src/store/messages/types';
 
 export const Form: FC = () => {
   const [value, setValue] = useState('');
   const { chatId } = useParams();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkDispatch<StoreState, void, AddMessage>>();
 
   const sendMessage = (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
     if (chatId) {
       dispatch(
-        addMessage(chatId, {
+        addMessageWithReplay(chatId, {
           author: AUTHOR.USER,
           value,
         })
