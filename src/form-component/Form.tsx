@@ -1,7 +1,7 @@
-import React, { FC, useState } from 'react';
 import styles from './Form.module.css';
+import React, { FC, useState } from 'react';
 import { TextField } from '@mui/material';
-import { Button } from './components/Button';
+import { Button } from './components/Button/Button';
 import { AUTHOR } from 'src/types';
 import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

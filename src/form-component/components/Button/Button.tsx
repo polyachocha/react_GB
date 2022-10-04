@@ -11,6 +11,7 @@ interface ButtonProps {
 export const Button: FC<ButtonProps> = ({
   disabled = false,
   click = () => null,
+  // children,
   render,
 }) => (
   <MUIButton
@@ -20,6 +21,6 @@ export const Button: FC<ButtonProps> = ({
     onClick={click}
     data-testid="button"
   >
-    {render && render('отправить')}
+    {render && render('send')}
   </MUIButton>
 );

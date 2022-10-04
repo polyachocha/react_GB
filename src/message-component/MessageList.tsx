@@ -1,4 +1,3 @@
-import { List, ListItem } from '@mui/material';
 import { FC } from 'react';
 import { Message } from 'src/types';
 
@@ -7,13 +6,11 @@ interface MessageListProps {
 }
 
 export const MessageList: FC<MessageListProps> = ({ messages }) => (
-  <List>
+  <ul>
     {messages.map((message, idx) => (
-      <ListItem key={idx}>
-        <li key={idx} data-testid="li">
-          {message.author} : {message.value}
-        </li>
-      </ListItem>
+      <li key={idx} data-testid="li">
+        {message.author} : {message.value}
+      </li>
     ))}
-  </List>
+  </ul>
 );

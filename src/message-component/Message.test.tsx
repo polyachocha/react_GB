@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 
 describe('test component MessageList', () => {
   it('render MessageList', () => {
-    render(<MessageList messages={[]}/>);
+    render(<MessageList messages={[]} />);
   });
 
   it('component MessageList is empty', () => {
@@ -27,7 +27,7 @@ describe('test component MessageList', () => {
         value: '5',
       },
     ];
-    render(<MessageList messages={messageList} />);
+    render(<MessageList messages={[]} />);
     expect(screen.getAllByTestId('li').length).toBe(3);
   });
 });
