@@ -1,4 +1,4 @@
-import { Dispatch } from 'redux';
+/* import { Dispatch } from 'redux';
 import { AUTHOR, Message } from 'src/types';
 import { AddChat, AddMessage, DeleteChat } from './types';
 
@@ -46,3 +46,4 @@ export const addMessageWithReplay =
       }, 1500);
     }
   };
+ */
