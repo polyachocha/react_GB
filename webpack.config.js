@@ -2,7 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin =
+  require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const withReport = process.env.npm_config_withReport;
@@ -13,6 +15,7 @@ module.exports = {
       logging: 'info',
     },
     compress: true,
+    // for react router
     historyApiFallback: true,
     port: 8000,
   },
@@ -26,9 +29,10 @@ module.exports = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.(j|t)sx?$/,
+        test: /\.(t|j)sx?$/,
         use: ['babel-loader'],
       },
+      // { test: /\.tsx?$/, loader: 'ts-loader' },
       {
         exclude: /\.module\.s?css$/i,
         test: /\.s?css$/i,
@@ -39,7 +43,7 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: '[name]___[hash:base64:5]',
-                mode: 'local',
+                mode: 'icss',
               },
             },
           },
@@ -69,6 +73,10 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
       },
+      // {
+      //   loader: 'html-loader',
+      //   test: /\.html$/i,
+      // },
     ],
   },
   optimization: {
@@ -100,6 +108,7 @@ module.exports = {
           }),
         ]),
     ...(withReport ? new BundleAnalyzerPlugin() : ''),
+    new ForkTsCheckerWebpackPlugin(),
   ],
   resolve: {
     alias: {
@@ -108,6 +117,6 @@ module.exports = {
       store: path.resolve(__dirname, 'src/store'),
       svg: path.resolve(__dirname, 'src/assets/svg'),
     },
-    extensions: ['.jsx', '.js', '.ts', '.tsx'],
+    extensions: ['.jsx', '.js', '.tsx', '.ts'],
   },
 };
