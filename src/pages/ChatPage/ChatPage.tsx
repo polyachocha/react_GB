@@ -3,20 +3,21 @@ import { useParams, Navigate } from 'react-router-dom';
 import { ChatList } from 'src/components/chat-component/ChatList';
 import { Form } from 'src/components/form-component/Form';
 import { MessageList } from 'src/components/message-component/MessageList';
-import { useSelector } from 'react-redux';
-import { selectMessages } from 'src/store/messages/selector';
 
-export const ChatPage: FC = () => {
+export const ChatPage: FC<any> = ({ chats, messages }) => {
   const { chatId } = useParams();
-  const messages = useSelector(selectMessages);
 
   if (chatId && !messages[chatId]) {
     return <Navigate to="/chats" replace />;
   }
+
+  const prepareMessages = [
+    ...Object.values((chatId && messages[chatId].messages) || {}),
+  ];
 return (
     <>
-      <ChatList />
-      <MessageList messages={chatId ? messages[chatId] : []} />
+      <ChatList chats={chats}/>
+      <MessageList messages={prepareMessages} />
       <Form />
     </>
   );
