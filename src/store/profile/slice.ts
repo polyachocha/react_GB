@@ -16,8 +16,11 @@ const profileSLice = createSlice({
     changeName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
+    auth: (state, action: PayloadAction<boolean>) => {
+      state.isAuth = action.payload;
+    }
   },
 });
 
-export const { toggleProfile, changeName } = profileSLice.actions;
+export const { toggleProfile, changeName, auth } = profileSLice.actions;
 export const profileReducer = profileSLice.reducer;
